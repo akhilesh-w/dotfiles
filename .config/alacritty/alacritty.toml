@@ -1,0 +1,33 @@
+
+live_config_reload = true
+
+[window]
+opacity = 0.8
+decorations = "None"
+blur = true
+startup_mode = "Maximized"
+padding = { x = 2, y = 2 } 
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 8
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[bell]
+animation = "EaseOutSine"
+duration = 1
+color = "#ffffff"
+command = "None"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+unfocused_hollow = true 
+
