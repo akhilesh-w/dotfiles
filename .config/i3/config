@@ -34,7 +34,7 @@ floating_modifier $mod
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Monospace 8
+font pango:Monospace 10
 
 # HiDPI for sway
 # output eDP-1 scale 1
@@ -69,12 +69,8 @@ bindsym $mod+b exec variety -n
 bindsym $mod+shift+b exec variety -p
 
 # rofi shortcuts
-bindsym $mod+ctrl+a exec ~/.config/rofi/applaunch/launcher.sh
-bindsym $mod+ctrl+f exec ~/.config/rofi/browser/browser_menu.pl
 bindsym $mod+ctrl+e exec ~/.config/rofi/emoji/emoji.pl
-bindsym $mod+ctrl+v exec ~/.config/rofi/helper/volume_control.pl
-bindsym $mod+ctrl+p exec ~/.config/rofi/powermenu/powermenu.sh
-bindsym $mod+ctrl+t exec ~/.config/rofi/change-theme.pl
+bindsym $mod+ctrl+f exec ~/.scripts/bravebookmarks.sh
 
 # skype, steam, wine: float Gimp
 # for_window [class="Code"] floating enable
@@ -362,8 +358,8 @@ exec --no-startup-id logseq
 # Settings for i3-gaps
 
 # set inner/outer gaps
-#gaps inner 5
-#gaps outer -2
+gaps inner 5
+gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

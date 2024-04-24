@@ -32,7 +32,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 15x49
+    offset = 0x0
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -180,8 +180,7 @@
     # Display indicators for URLs (U) and actions (A).
     show_indicators = yes
 
-    # Split notifications into multiple lines if they don't fit into
-    # geometry.
+    # Split notifications into multiple lines if they don't fit into geometry.
     word_wrap = yes
 
     ### Icons ###
@@ -230,7 +229,7 @@
     # in pixel size. If the radius is 0, you have no rounded corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 9
+    corner_radius = 3
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this

@@ -120,7 +120,6 @@ export PATH="/home/dopamine/.local/share/solana/install/active_release/bin:$PATH
 # aliases 
 # better navigation
 alias config='cd ~/.config'
-alias logseq='cd ~/Documents/Loggy'
 alias battery='cd /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00; code .'
 alias zshconfig='nvim ~/.zshrc'
 alias ohmyzsh='nvim ~/.oh-my-zsh'
@@ -133,7 +132,7 @@ alias path='echo -e ${PATH//:/\\n}' # prints path environmental variable
 alias install='sudo pacman -S'
 alias plz='sudo $(fc -ln -1)'
 alias tree='exa --tree'
-alias uptime='uptime --pretty'
+# alias uptime='uptime --pretty'
 alias free='free -h'
 alias ytdl='yt-dlp'
 alias ytdlm='yt-dlp --extract-audio --audio-format mp3'

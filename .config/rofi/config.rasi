@@ -16,7 +16,7 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import	 "colors/ef-day.rasi"
+@import	 "colors/operandi.rasi"
 
 * {
     border-colour:               var(selected);
