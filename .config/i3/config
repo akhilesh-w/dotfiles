@@ -1,15 +1,12 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
-# Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 set $term alacritty
 set $menu rofi -show
 set $barcmd i3status
 set $lockcmd i3lock
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
+floating_modifier $mod
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
@@ -23,46 +20,19 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# font xft:URWGothic-Book 11
-
-# Use Mouse+$mod to drag floating windows
-floating_modifier $mod
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Monospace 10
-
-# HiDPI for sway
-# output eDP-1 scale 1
-
-# Reverse scroll
-#input "2:7:SynPS/2_Synaptics_TouchPad" {
-#    natural_scroll enabled
-#    left_handed disabled
-#    pointer_accel 0.9
-#}
-
-# Use Mouse+$mod to drag floating windows
-floating_modifier $mod
+font pango:FiraCodeNerdFont 10
 
 floating_minimum_size 150 x 150
 floating_maximum_size 2500 x 1500
 
-# start a terminal
-bindsym $mod+Return exec $term
-
-# start dmenu
-bindsym $mod+d exec $menu
+# switching window with win+tab
+bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # start applications 
 bindsym $mod+ctrl+b exec firefox
 
-# kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+q split toggle
 
 # change wallpaper
 bindsym $mod+b exec variety -n
@@ -72,9 +42,6 @@ bindsym $mod+shift+b exec variety -p
 bindsym $mod+ctrl+e exec ~/.config/rofi/emoji/emoji.pl
 bindsym $mod+ctrl+f exec ~/.scripts/bravebookmarks.sh
 
-# skype, steam, wine: float Gimp
-# for_window [class="Code"] floating enable
-for_window [class="Com.system76.FirmwareManager"] floating enable
 for_window [class="Firefox"] floating enable
 for_window [class="Keybase"] floating enable
 for_window [class="Nvidia-settings"] floating enable
@@ -134,12 +101,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # ------------------------------------------------------
 
@@ -222,7 +183,7 @@ bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 assign [class="Firefox"] $ws1
 assign [class="alacritty"] $ws2
 assign [class="discord"] $ws3
-assign [class="logseq"] $ws4
+assign [class="Logseq"] $ws4
 
 
 for_window [class="Nitrogen"] floating enable sticky enable border normal
@@ -252,14 +213,14 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # screenshot
 ##  Screenshots in files
-bindsym Print exec --no-startup-id maim --format=png "/home/dopamine/Pictures/screenshots-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
-bindsym $mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) "/home/dopamine/Pictures/Screenshots-$(date -u +'%Y%m%d-%H%M%SZ')-current.png"
-bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/dopamine/Pictures/screenshots-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png"
+bindsym Print exec --no-startup-id maim --format=png "/home/dopamine/Pictures/screenshots-$(date -u +'%Y%m%d-%H%M%SZ')-all.png" && notify-send 'screenshot saved!'
+bindsym $mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) "/home/dopamine/Pictures/Screenshots-$(date -u +'%Y%m%d-%H%M%SZ')-current.png" && notify-send 'window saved!'
+bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/dopamine/Pictures/screenshots-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png" && notify-send 'snip saved!'
 
 ## Screenshots in clipboards
-bindsym Ctrl+Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png && notify-send 'screenshot copied!'
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png && notify-send 'window copied!'
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png && notify-send 'snip copied!'
 
 
 
@@ -295,36 +256,21 @@ bindsym $mod+r mode "resize"
 
 # -----------------------------------------------------------
 
-# Set shut down, restart and locking features
-# bindsym $mod+0 mode "$mode_system"
-# set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-# mode "$mode_system" {
-# bindsym l exec --no-startup-id i3exit lock, mode "default"
-# bindsym s exec --no-startup-id i3exit suspend, mode "default"
-# bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-# bindsym e exec --no-startup-id i3exit logout, mode "default"
-# bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-# bindsym r exec --no-startup-id i3exit reboot, mode "default"
-# bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-
-# ------------------------------------------------------------
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exit
+# bindsym $mod+Shift+e exit
 
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # ------------------------------------------------------------
 
 # i3status bar config
 bar {
-	font pango:monospace 10
+	font pango:FiraCodeNerdFont 10
 	status_command $barcmd --config ~/.config/i3/status.conf
-        #status_command $barcmd --config ~/.config/polybar/config
 }
 
 # hide/unhide i3status bar
@@ -333,81 +279,74 @@ bindsym $mod+m bar mode toggle
 # auto run commands
 # set background
 # use the same background as slim (login manager)
-#exec --no-startup-id feh --bg-fill ${HOME}/Pictures/central-park.jpg
-
-# Sway backgroud
-# output "*" background ${HOME}/Pictures/central-park2.jpg fill
+exec --no-startup-id feh --bg-fill ${HOME}/Pictures/central-park.jpg
 
 # run the merge for good colors
 exec xrdb -merge $HOME/.Xresources
 exec xrdb -merge $HOME/.Xdefaults
 
-#exec --no-startup-id activitywatch
 exec --no-startup-id $HOME/Downloads/activitywatch/aw-qt
 #exec --no-startup-id discord --start-minimized
-# exec --no-startup-id discord
 exec --no-startup-id alacratty
 exec --no-startup-id variety
 exec --no-startup-id volumeicon
 exec --no-startup-id /usr/bin/kdeconnect-app
 exec --no-startup-id dunst
 exec --no-startup-id logseq
+exec --no-startup-id picom
+exec --no-startup-id nm-applet
+
 
 # ------------------------------------------------------------
 
 # Settings for i3-gaps
 
 # set inner/outer gaps
-gaps inner 5
+gaps inner 8
 gaps outer -2
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 #smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-#smart_borders on
+smart_borders on
 
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-#set $mode_gaps Gaps: (o) outer, (i) inner
-#set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-#set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-#bindsym $mod+Shift+g mode "$mode_gaps"
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
 
-#mode "$mode_gaps" {
-#	bindsym o      mode "$mode_gaps_outer"
-#		bindsym i      mode "$mode_gaps_inner"
-#		bindsym Return mode "default"
-#		bindsym Escape mode "default"
-#}
-#mode "$mode_gaps_inner" {
-#	bindsym plus  gaps inner current plus 5
-#		bindsym minus gaps inner current minus 5
-# 		bindsym 0     gaps inner current set 0
+mode "$mode_gaps" {
+	bindsym o      mode "$mode_gaps_outer"
+		bindsym i      mode "$mode_gaps_inner"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+	bindsym plus  gaps inner current plus 5
+		bindsym minus gaps inner current minus 5
+		bindsym 0     gaps inner current set 0
 
-# 		bindsym Shift+plus  gaps inner all plus 5
-# 		bindsym Shift+minus gaps inner all minus 5
-# 		bindsym Shift+0     gaps inner all set 0
+		bindsym Shift+plus  gaps inner all plus 5
+		bindsym Shift+minus gaps inner all minus 5
+		bindsym Shift+0     gaps inner all set 0
 
-# 		bindsym Return mode "default"
-# 		bindsym Escape mode "default"
-# }
-#mode "$mode_gaps_outer" {
-# 	bindsym plus  gaps outer current plus 5
-# 		bindsym minus gaps outer current minus 5
-# 		bindsym 0     gaps outer current set 0
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+	bindsym plus  gaps outer current plus 5
+		bindsym minus gaps outer current minus 5
+		bindsym 0     gaps outer current set 0
 
-# 		bindsym Shift+plus  gaps outer all plus 5
-# 		bindsym Shift+minus gaps outer all minus 5
-# 		bindsym Shift+0     gaps outer all set 0
+		bindsym Shift+plus  gaps outer all plus 5
+		bindsym Shift+minus gaps outer all minus 5
+		bindsym Shift+0     gaps outer all set 0
 
-# 		bindsym Return mode "default"
-# 		bindsym Escape mode "default"
-# }
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+
 
 
