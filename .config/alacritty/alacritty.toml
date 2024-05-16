@@ -6,7 +6,7 @@ opacity = 0.8
 decorations = "None"
 blur = true
 startup_mode = "Maximized"
-padding = { x = 2, y = 2 } 
+padding = { x = 2, y = 0 } 
 
 [scrolling]
 history = 10000

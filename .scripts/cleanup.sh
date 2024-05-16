@@ -1,7 +1,3 @@
-
-
-
-
 #!/bin/zsh
 clear
 cat <<"EOF"
