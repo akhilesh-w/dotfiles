@@ -102,6 +102,7 @@ alias sp='sudo pacman'
 alias psi='pacman -Si'
 alias i='sudo pacman -S'
 alias aheka='pacman -Qi'
+alias apps="echo && pacman -Slq | fzf --multi --preview-window=right,60%  --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 
 # fzf alias 
 alias search="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim"
@@ -140,5 +141,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # starship prompt
 #eval "$(starship init zsh)"
 
+export PATH=$PATH:/home/dopamine/.spicetify
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+
