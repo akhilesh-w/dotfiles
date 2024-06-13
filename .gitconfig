@@ -1,3 +1,5 @@
 [user]
 	email = akhi23waghmare@gmail.com
 	name = akhilesh
+[init]
+	defaultBranch = main

@@ -1,4 +1,6 @@
 set $mod Mod4
+set $alt Mod1
+
 set $term alacritty
 set $menu rofi -show
 set $barcmd i3blocks
@@ -6,7 +8,7 @@ set $lockcmd i3lock
 
 floating_modifier $mod
 bindsym $mod+Return exec $term
-bindsym $mod+d exec $menu
+bindsym $alt+space exec $menu
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
@@ -48,6 +50,9 @@ bindsym $mod+shift+b exec variety -p
 # rofi shortcuts
 bindsym $mod+ctrl+e exec ~/.config/rofi/emoji/emoji.pl
 bindsym $mod+ctrl+f exec ~/.scripts/bravebookmarks.sh
+bindsym $mod+c exec --no-startup-id clipmenu
+bindsym $mod+d exec python ~/.config/rofi/gemini/geminiRofi.py
+bindsym $alt+s exec ~/.scripts/script.sh
 
 for_window [class="Firefox"] floating enable
 for_window [class="Keybase"] floating enable
@@ -294,15 +299,15 @@ exec xrdb -merge $HOME/.Xdefaults
 
 exec --no-startup-id $HOME/Downloads/activitywatch/aw-qt
 #exec --no-startup-id discord --start-minimized
-exec --no-startup-id alacratty
+exec --no-startup-id alacritty
 exec --no-startup-id variety
 exec --no-startup-id volumeicon
 exec --no-startup-id /usr/bin/kdeconnect-app
 exec --no-startup-id dunst
-exec --no-startup-id logseq
+exec --no-startup-id /opt/logseq/Logseq
 exec --no-startup-id picom
 exec --no-startup-id nm-applet
-exec --no-startup-id ~/.scripts/copy.sh
+exec --no-startup-id clipmenud
 
 # ------------------------------------------------------------
 
