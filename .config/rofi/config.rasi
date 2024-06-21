@@ -1,7 +1,3 @@
-/** 
- * Rofi Theme File
- * Rofi Version: 1.7.3
-**/
 
 /*****----- Configuration -----*****/
 configuration {
@@ -16,7 +12,7 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import	 "colors/operandi.rasi"
+@import	 "colors/ef-cherie.rasi"
 
 * {
     border-colour:               var(selected);

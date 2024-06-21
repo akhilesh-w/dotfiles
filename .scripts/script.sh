@@ -1,1 +1,1 @@
-selected=$(ls ~/.scripts/|rofi -dmenu -p "Run: ")&&bash ~/Scripts/$selected
+selected=$(ls ~/.scripts/|rofi -dmenu -p "Run: ")&&bash ~/.scripts/$selected
