@@ -8,11 +8,11 @@ set $lockcmd i3lock
 
 floating_modifier $mod
 bindsym $mod+Return exec $term
-bindsym $alt+space exec $menu
+bindsym $mod+d exec $menu
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window none
-new_float normal
+new_window pixel 2
+#new_float normal
 
 # Hide borders
 hide_edge_borders none
@@ -31,7 +31,7 @@ floating_maximum_size 2500 x 1500
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # start applications 
-bindsym $mod+ctrl+b exec firefox
+bindsym $mod+ctrl+b exec brave
 
 bindsym $mod+Shift+q kill
 bindsym $mod+q split toggle
@@ -51,15 +51,16 @@ bindsym $mod+shift+b exec variety -p
 bindsym $mod+ctrl+e exec ~/.config/rofi/emoji/emoji.pl
 bindsym $mod+ctrl+f exec ~/.scripts/bravebookmarks.sh
 bindsym $mod+c exec --no-startup-id clipmenu
-bindsym $mod+d exec python ~/.config/rofi/gemini/geminiRofi.py
+bindsym $mod+v exec python ~/.config/rofi/gemini/geminiRofi.py
 #bindsym $alt+s exec ~/.scripts/script.sh
 
-for_window [class="Firefox"] floating enable
 for_window [class="Keybase"] floating enable
 for_window [class="Nvidia-settings"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="vlc"] floating enable
 for_window [class="zoom"] floating enable
+for_window [class="amberol"] floating enable
+
 
 # lock screen
 bindsym $mod+semicolon exec $lockcmd -c 000000
@@ -197,11 +198,8 @@ assign [class="alacritty"] $ws2
 assign [class="discord"] $ws3
 assign [class="Logseq"] $ws4
 
-
-for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="GParted"] floating enable border normal
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-
 
 
 # ---------------------------------------------------------
@@ -242,12 +240,8 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --format=png --select | xclip
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
+	bindsym h resize shrink width 10 px or 10 ppt
+	bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
@@ -302,7 +296,7 @@ exec --no-startup-id variety
 exec --no-startup-id volumeicon
 exec --no-startup-id /usr/bin/kdeconnect-app
 exec --no-startup-id dunst
-exec --no-startup-id /opt/logseq/Logseq
+#exec --no-startup-id /opt/logseq/Logseq
 exec --no-startup-id picom
 exec --no-startup-id nm-applet
 exec --no-startup-id clipmenud

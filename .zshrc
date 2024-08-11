@@ -53,7 +53,8 @@ export PATH="/home/dopamine/.local/share/solana/install/active_release/bin:$PATH
 # aliases 
 # better navigation
 alias config='cd ~/.config'
-alias battery='cd /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00; code .'
+# alias battery='cd /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00; code .'
+alias battery='sudo vim /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 alias zshconfig='nvim ~/.zshrc'
 alias ohmyzsh='nvim ~/.oh-my-zsh'
 alias :q='exit'
