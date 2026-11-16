@@ -4,11 +4,11 @@
 }
 
 window#waybar {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, monospace;
+    /* Nerd Font covers the Font Awesome 4 icons used in the bar config. */
+    font-family: "FiraCode Nerd Font", "FiraCode Nerd Font Mono", monospace;
     background-color: transparent;
     border-bottom: 0px;
-    color: #ebdbb2;
+    color: #d3cfcf;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -21,15 +21,6 @@ window#waybar.empty #window {
     background-color: transparent;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
 .modules-right {
     margin: 10px 10px 0 0;
 }
@@ -41,26 +32,17 @@ window#waybar.solo {
 }
 
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    /* box-shadow: inset 0 -3px transparent; */
     border: none;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-/*
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ebdbb2;
-} */
-
 #workspaces {
-    background-color: #282828;
+    background-color: #291f26;
 }
 
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ebdbb2;
+    color: #d3cfcf;
     border-radius: 0;
 }
 
@@ -73,16 +55,16 @@ button:hover {
 }
 
 #workspaces button:hover {
-    color: #d79921;
+    color: #ffcfdf;
 }
 
 #workspaces button.focused {
-    background-color: #665c54;
-    /* box-shadow: inset 0 -3px #ffffff; */
+    background-color: #771a4f;
 }
 
 #workspaces button.urgent {
-    background-color: #b16286;
+    background-color: #ff7359;
+    color: #190a0f;
 }
 
 #window,
@@ -101,22 +83,19 @@ button:hover {
 #battery,
 #tray {
     padding: 0 10px;
-    background-color: #282828;
-    color: #ebdbb2;
+    background-color: #291f26;
+    color: #d3cfcf;
 }
 
 #mode {
-    background-color: #689d6a;
-    color: #282828;
-    /* box-shadow: inset 0 -3px #ffffff; */
+    background-color: #60b444;
+    color: #190a0f;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
 }
@@ -126,21 +105,20 @@ button:hover {
 }
 
 #battery.charging, #battery.plugged {
-    background-color: #98971a;
-    color: #282828;
+    background-color: #60b444;
+    color: #190a0f;
 }
 
 @keyframes blink {
     to {
-        background-color: #282828;
-        color: #ebdbb2;
+        background-color: #190a0f;
+        color: #d3cfcf;
     }
 }
 
-/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #cc241d;
-    color: #ebdbb2;
+    background-color: #ff7359;
+    color: #190a0f;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
@@ -149,11 +127,12 @@ button:hover {
 }
 
 label:focus {
-    background-color: #000000;
+    background-color: #190a0f;
 }
 
 #wireplumber.muted {
-    background-color: #458588;
+    background-color: #8fa5f6;
+    color: #190a0f;
 }
 
 #tray > .passive {
@@ -165,8 +144,8 @@ label:focus {
 }
 
 #mpris.playing {
-    background-color: #d79921;
-    color: #282828;
+    background-color: #771a4f;
+    color: #ffcfdf;
 }
 
 #tray menu {

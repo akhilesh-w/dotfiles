@@ -1,0 +1,60 @@
+/* Matches the active Rofi theme, colors/ef-cherie.rasi. */
+
+* {
+    font-family: "FiraCode Nerd Font", sans-serif;
+    font-size: 14px;
+}
+
+window {
+    background-color: #190a0f;
+    border: 2px solid #771a4f;
+    border-radius: 14px;
+}
+
+#outer-box {
+    margin: 10px;
+    background-color: transparent;
+}
+
+#input {
+    margin: 4px 6px 10px 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #291f26;
+    color: #d3cfcf;
+    caret-color: #ffcfdf;
+    box-shadow: none;
+}
+
+#inner-box,
+#scroll {
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0 2px;
+}
+
+#entry {
+    padding: 7px 10px;
+    margin: 2px 4px;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+#entry:selected {
+    background-color: #771a4f;
+}
+
+#text {
+    color: #d3cfcf;
+}
+
+#text:selected {
+    color: #ffcfdf;
+}
+
+#img {
+    margin-right: 10px;
+}

@@ -2,9 +2,9 @@
     monitor = 0
     follow = mouse
     width = 300
-    height = 300
+    height = (0, 300)
     origin = top-right
-    offset = 10x10
+    offset = (10, 10)
     scale = 0
     notification_limit = 0
     progress_bar = true
@@ -19,16 +19,16 @@
     horizontal_padding = 10
     text_icon_padding = 0
     frame_width = 1
-    frame_color = "#85b5eb"
+    frame_color = "#771a4f"
     # frame_color = "#232323"
     gap_size = 0
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = FiraCodeNerdFont 10
+    font = FiraCode Nerd Font 10
     line_height = 2
     markup = full
-    format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b"
+    format = "<span foreground='#ffcfdf'><b>%s %p</b></span>\n%b"
     alignment = center
     vertical_alignment = center
     show_age_threshold = 60
@@ -41,13 +41,13 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 80
-    icon_path = /usr/share/icons/Paper/16x16/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/16x16/apps/
+    icon_path = /usr/share/icons/breeze-dark/status/16/:/usr/share/icons/breeze/devices/16/:/usr/share/icons/breeze/apps/16/
     sticky_history = yes
     history_length = 20
     browser = /usr/bin/xdg-open
     dmenu = /usr/bin/dmenu -p dunst:
     always_run_script = true
-    corner_radius = 3
+    corner_radius = 8
     ignore_dbusclose = false
     force_xinerama = false
     mouse_left_click = open_url
@@ -55,20 +55,20 @@
     mouse_right_click = close_all
 
 [urgency_low]
-    background = "#232323"
-    foreground = "#a8a8a8"
+    background = "#190a0f"
+    foreground = "#d3cfcf"
     timeout = 10
 
 [urgency_normal]
-    background = "#232323"
-    foreground = "#a8a8a8"
+    background = "#291f26"
+    foreground = "#d3cfcf"
     timeout = 10
     override_pause_level = 30
 
 [urgency_critical]
-    background = "#d64e4e"
-    foreground = "#f0e0e0"
-    frame_color = "#d64e4e"
+    background = "#ff7359"
+    foreground = "#190a0f"
+    frame_color = "#ff7359"
     timeout = 0
     override_pause_level = 60
-    default_icon = /usr/share/icons/Paper/16x16/status/dialog-warning.png
+    default_icon = /usr/share/icons/breeze-dark/status/16/dialog-warning.svg

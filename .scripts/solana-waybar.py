@@ -5,10 +5,13 @@ import json
 
 def get_solana_price():
     try:
-        response = requests.get('https://api.mobula.io/api/1/market/data?asset=Solana')
-        response.raise_for_status()  # This will raise an HTTPError for bad responses
-        data = response.json()
-        solana_price = data['data']['price']
+        response = requests.get(
+            'https://api.coingecko.com/api/v3/simple/price',
+            params={'ids': 'solana', 'vs_currencies': 'usd'},
+            timeout=10,
+        )
+        response.raise_for_status()
+        solana_price = response.json()['solana']['usd']
         return json.dumps({"text": f"SOL: ${solana_price:.2f}"})
     except requests.exceptions.RequestException as e:
         return json.dumps({"text": f"Error: Could not retrieve data"})
