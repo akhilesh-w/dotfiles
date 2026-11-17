@@ -9,39 +9,82 @@
     "modules-left": [
         "hyprland/workspaces"
     ],
-    //"modules-center": [
-    //    "hyprland/window"
-    //],
+    "modules-center": [
+        "mpris"
+    ],
     "modules-right": [
-        "mpris",
         "idle_inhibitor",
-        "custom/solana",
-        "cpu",
-        "load",
-        "memory",
-        "temperature",
-	"wireplumber",
+        "group/stats",
+        "wireplumber",
         "backlight",
-        "clock",
+        "network",
+        "bluetooth",
+        "power-profiles-daemon",
         "battery",
+        "clock",
+        "custom/help",
         "tray"
     ],
+    // CPU stays visible. Hover it to slide out memory, temperature and load.
+    "group/stats": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "stats-child",
+            "transition-left-to-right": false
+        },
+        "modules": ["cpu", "memory", "temperature", "load"]
+    },
+    "network": {
+        "interval": 5,
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰤫",
+        "format-disconnected": "󰤮",
+        "format-disabled": "󰖪",
+        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+        "tooltip-format-wifi": "{essid}   {signalStrength}%\n{ipaddr}   {frequency} GHz\n⇣ {bandwidthDownBytes}   ⇡ {bandwidthUpBytes}\n\nClick: Wi-Fi menu   Right-click: settings",
+        "tooltip-format-ethernet": "{ifname}   {ipaddr}\n⇣ {bandwidthDownBytes}   ⇡ {bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Not connected\nClick to pick a network",
+        "tooltip-format-disabled": "Wi-Fi is off\nClick to turn it on",
+        "on-click": "/home/dopamine/.scripts/wifi-menu.sh",
+        "on-click-right": "nm-connection-editor"
+    },
+    // Click cycles power saver / balanced / performance. Right-click: pick from a menu.
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power mode: {profile}\nClick to cycle   Right-click: menu",
+        "tooltip": true,
+        "format-icons": {
+            "default": "󰾅",
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰾆"
+        },
+        "on-click-right": "/home/dopamine/.scripts/power-mode.sh"
+    },
+    "bluetooth": {
+        "format": "󰂯",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-no-controller": "",
+        "format-connected": "󰂱",
+        "format-connected-battery": "󰂱 {device_battery_percentage}%",
+        "tooltip-format": "Bluetooth on, nothing connected\nClick to connect a device",
+        "tooltip-format-off": "Bluetooth off\nClick to turn it on",
+        "tooltip-format-disabled": "Bluetooth off\nClick to turn it on",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}   {device_battery_percentage}%",
+        "on-click": "/home/dopamine/.scripts/bluetooth-menu.sh"
+    },
     // Modules configuration
     "hyprland/workspaces": {
         "all-outputs": true,
         "warp-on-scroll": false,
         "enable-bar-scroll": true,
         "disable-scroll-wraparound": true,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "9": "",
-            "10": ""
-        }
+        "format": "{name}"
     },
     "hyprland/window": {
         "format": "{title}",
@@ -70,7 +113,8 @@
     "mpris": {
  	"format": " {status_icon} {dynamic}",
         "interval": 1,
-        "dynamic-len": 40,
+        "dynamic-len": 44,
+        "max-length": 56,
 	"status-icons": {
 		"playing": "▶",
 		"paused": "⏸",
@@ -78,6 +122,12 @@
 	},
 	"dynamic-order": ["title", "artist"],
 	"ignored-players": ["firefox", "brave"]
+    },
+    "custom/help": {
+        "format": "?",
+        "tooltip": true,
+        "tooltip-format": "Keyboard shortcuts\nClick for the full guide",
+        "on-click": "/home/dopamine/.scripts/shortcuts.sh"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -145,8 +195,8 @@
     "wireplumber": {
         "scroll-step": 5, // %, can be a float
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% ",
-        "format-bluetooth-muted": " {icon}",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": " {icon}",
         "format-muted": "",
         "format-icons": {
             "headphone": "",
@@ -157,12 +207,6 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "on-click": "swayosd-client --output-volume mute-toggle"
     },
-    "custom/solana": {
-        "exec": "/home/dopamine/.scripts/solana-waybar.py",
-        "interval": 60,
-        "format": "{text}",
-        "return-type": "json"
-},
 }]

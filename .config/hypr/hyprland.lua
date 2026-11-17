@@ -3,16 +3,26 @@
 
 local terminal = "kitty"
 local fileManager = "dolphin"
-local menu = "wofi --show drun"
+local menu = "pkill -x rofi || rofi -show drun"
 
 ------------------
 ---- MONITORS ----
 ------------------
 
+-- Laptop panel.
 hl.monitor({
-    output   = "",
+    output   = "eDP-1",
     mode     = "1920x1080@120",
     position = "0x0",
+    scale    = 1,
+})
+
+-- Anything else plugged in (external monitor, projector): use its own best
+-- mode and place it to the right of the laptop screen.
+hl.monitor({
+    output   = "",
+    mode     = "preferred",
+    position = "auto",
     scale    = 1,
 })
 
@@ -21,11 +31,18 @@ hl.monitor({
 -------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("nm-applet")
+    -- nm-applet removed: Waybar now has its own Wi-Fi icon and menu.
     hl.exec_cmd("waybar")
-    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("swayosd-server")
+    hl.exec_cmd("systemctl --user start hypridle")
+    hl.exec_cmd("hyprsunset")
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("~/.scripts/wallpaper-init.sh")
     hl.exec_cmd("systemctl --user start dunst")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("systemctl --user start voxtype")
+    hl.exec_cmd("tailscale systray --theme light:nobg")
 end)
 
 -------------------------------
@@ -35,7 +52,8 @@ end)
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("GTK_THEME", "Adwaita:dark")
-hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
+-- Qt apps (Dolphin etc.) use qt6ct: Fusion style, dark palette, Breeze Dark icons.
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -137,9 +155,20 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("~/.scripts/exit-hyprland.sh"
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("~/.scripts/control-center.sh"))
+hl.bind(mainMod .. " + SHIFT + SLASH", hl.dsp.exec_cmd("~/.scripts/shortcuts.sh"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("~/.scripts/wallpaper-next.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind("Print", hl.dsp.exec_cmd("~/.scripts/screenshot.sh"))
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd("~/.scripts/screenshot.sh full"))
+hl.bind(mainMod .. " + CTRL + V", hl.dsp.exec_cmd("~/.scripts/clipboard-menu.sh"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop"))
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dunstctl close-all"))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("F9", hl.dsp.exec_cmd("voxtype record start"))
+hl.bind("F9", hl.dsp.exec_cmd("voxtype record stop"), { release = true })
+hl.bind(mainMod .. " + CTRL + X", hl.dsp.exec_cmd("voxtype record toggle"))
 hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd("brave"))
 
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -216,17 +245,41 @@ hl.bind("XF86AudioStop",  hl.dsp.exec_cmd("playerctl stop"),       { locked = tr
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -q set +5%"), { repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -q set 5%-"), { repeating = true })
+-- swayosd changes the value and shows the on-screen pop-up in one step.
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("swayosd-client --brightness +5"), { repeating = true, locked = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness -5"), { repeating = true, locked = true })
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"), { repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"), { repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume +5"), { repeating = true, locked = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume -5"), { repeating = true, locked = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"), { locked = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("swayosd-client --input-volume mute-toggle"), { locked = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
+
+-- Frosted glass behind Rofi menus and the volume/brightness pop-up.
+-- ignore_alpha keeps the blur inside their rounded corners.
+hl.layer_rule({
+    name = "blur-rofi",
+    match = { namespace = "^rofi$" },
+    blur = true,
+    ignore_alpha = 0.5,
+})
+
+hl.layer_rule({
+    name = "blur-notifications",
+    match = { namespace = "^notifications$" },
+    blur = true,
+    ignore_alpha = 0.5,
+})
+
+hl.layer_rule({
+    name = "blur-swayosd",
+    match = { namespace = "^swayosd$" },
+    blur = true,
+    ignore_alpha = 0.5,
+})
 
 hl.window_rule({
     name = "suppress-maximize-events",

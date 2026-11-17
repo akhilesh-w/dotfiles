@@ -1,0 +1,135 @@
+/* Plum - shared Rofi theme. Matches Waybar, Hyprlock and the window borders.
+ * Variants (menu, wallpaper, shortcuts) @import this file and override sizes. */
+
+* {
+    bg:          #1a1419eb;
+    surface:     #291f26;
+    line:        #3a2c36;
+    edge:        #4d3546;
+    plum:        #771a4f;
+    select-bg:   #3a2232;
+    select-edge: #6e2a52;
+    pink:        #ffcfdf;
+    fg:          #ded6db;
+    fg-bright:   #ffffff;
+    fg-dim:      #8f838b;
+    urgent:      #ff7359;
+
+    font:             "Adwaita Sans 11";
+    background-color: transparent;
+    text-color:       @fg;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+}
+
+window {
+    location:         north;
+    anchor:           north;
+    y-offset:         140px;
+    width:            640px;
+    border:           1px;
+    border-color:     @edge;
+    border-radius:    14px;
+    background-color: @bg;
+}
+
+mainbox {
+    padding:  10px;
+    children: [ "inputbar", "message", "listview" ];
+}
+
+inputbar {
+    padding:      8px 8px 14px;
+    margin:       0 0 8px;
+    spacing:      10px;
+    border:       0 0 1px;
+    border-color: @line;
+    children:     [ "textbox-search", "entry", "prompt" ];
+}
+
+textbox-search {
+    expand:         false;
+    str:            "";
+    font:           "FiraCode Nerd Font 13";
+    text-color:     @fg-dim;
+    vertical-align: 0.5;
+}
+
+entry {
+    placeholder:       "Search";
+    placeholder-color: @fg-dim;
+    cursor:            text;
+    font:              "Adwaita Sans 12";
+    vertical-align:    0.5;
+}
+
+prompt {
+    padding:          3px 9px;
+    border-radius:    6px;
+    background-color: @surface;
+    text-color:       @pink;
+    font:             "Adwaita Sans Bold 9";
+    vertical-align:   0.5;
+}
+
+message {
+    margin:           0 0 8px;
+    padding:          8px 10px;
+    border-radius:    8px;
+    background-color: @surface;
+}
+
+textbox {
+    text-color:     @fg-dim;
+    vertical-align: 0.5;
+}
+
+listview {
+    lines:        8;
+    columns:      1;
+    fixed-height: true;
+    scrollbar:    false;
+    cycle:        true;
+    spacing:      2px;
+}
+
+element {
+    padding:       8px 10px;
+    spacing:       12px;
+    border:        1px;
+    border-radius: 8px;
+    border-color:  transparent;
+    cursor:        pointer;
+}
+
+element normal.normal,
+element alternate.normal { background-color: transparent; text-color: @fg; }
+element normal.active,
+element alternate.active { background-color: transparent; text-color: @pink; }
+element normal.urgent,
+element alternate.urgent { background-color: transparent; text-color: @urgent; }
+
+element selected.normal,
+element selected.active {
+    background-color: @select-bg;
+    border-color:     @select-edge;
+    text-color:       @fg-bright;
+}
+element selected.urgent {
+    background-color: @urgent;
+    text-color:       #190a0f;
+}
+
+element-icon {
+    size:           26px;
+    vertical-align: 0.5;
+    cursor:         inherit;
+}
+
+element-text {
+    text-color:     inherit;
+    highlight:      bold #ffcfdf;
+    vertical-align: 0.5;
+    cursor:         inherit;
+}

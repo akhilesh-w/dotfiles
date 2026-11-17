@@ -1,74 +1,85 @@
+# Notifications, styled to match Rofi, Waybar and the volume pop-up.
+# Super+N brings back the last dismissed notification, Super+Shift+N clears all.
+
 [global]
     monitor = 0
     follow = mouse
-    width = 300
-    height = (0, 300)
+    width = (280, 360)
+    height = (0, 220)
     origin = top-right
-    offset = (10, 10)
+    offset = (12, 12)
     scale = 0
-    notification_limit = 0
+    notification_limit = 5
+    gap_size = 8
+
     progress_bar = true
-    progress_bar_height = 10
-    progress_bar_frame_width = 1
+    progress_bar_height = 6
+    progress_bar_frame_width = 0
     progress_bar_min_width = 150
-    progress_bar_max_width = 300
+    progress_bar_max_width = 340
+    progress_bar_corner_radius = 3
+    highlight = "#ffcfdf"
+
     indicate_hidden = yes
-    transparency = 5
-    separator_height = 2
-    padding = 10
-    horizontal_padding = 10
-    text_icon_padding = 0
+    transparency = 0
+    separator_height = 0
+    padding = 12
+    horizontal_padding = 14
+    text_icon_padding = 12
     frame_width = 1
-    frame_color = "#771a4f"
-    # frame_color = "#232323"
-    gap_size = 0
+    frame_color = "#4d3546"
     separator_color = frame
+    corner_radius = 12
     sort = yes
     idle_threshold = 120
-    font = FiraCode Nerd Font 10
+
+    font = Adwaita Sans 10
     line_height = 2
     markup = full
-    format = "<span foreground='#ffcfdf'><b>%s %p</b></span>\n%b"
-    alignment = center
+    format = "<span foreground='#ffcfdf' weight='bold'>%s</span>\n%b"
+    alignment = left
     vertical_alignment = center
     show_age_threshold = 60
     ellipsize = middle
     ignore_newline = no
     stack_duplicates = true
     hide_duplicate_count = false
-    show_indicators = yes
+    show_indicators = no
     word_wrap = yes
+
     icon_position = left
-    min_icon_size = 0
-    max_icon_size = 80
-    icon_path = /usr/share/icons/breeze-dark/status/16/:/usr/share/icons/breeze/devices/16/:/usr/share/icons/breeze/apps/16/
+    icon_theme = "breeze-dark, Adwaita"
+    enable_recursive_icon_lookup = true
+    min_icon_size = 32
+    max_icon_size = 48
+    icon_corner_radius = 6
+
     sticky_history = yes
-    history_length = 20
+    history_length = 50
     browser = /usr/bin/xdg-open
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -p dunst
     always_run_script = true
-    corner_radius = 8
     ignore_dbusclose = false
     force_xinerama = false
-    mouse_left_click = open_url
-    mouse_middle_click = do_action, close_current
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_current
     mouse_right_click = close_all
 
 [urgency_low]
-    background = "#190a0f"
-    foreground = "#d3cfcf"
-    timeout = 10
+    background = "#1a1419eb"
+    foreground = "#b5aab1"
+    timeout = 6
 
 [urgency_normal]
-    background = "#291f26"
-    foreground = "#d3cfcf"
-    timeout = 10
+    background = "#1a1419eb"
+    foreground = "#ded6db"
+    timeout = 8
     override_pause_level = 30
 
 [urgency_critical]
-    background = "#ff7359"
-    foreground = "#190a0f"
+    background = "#2a1418f2"
+    foreground = "#ffe3dc"
     frame_color = "#ff7359"
+    highlight = "#ff7359"
     timeout = 0
     override_pause_level = 60
-    default_icon = /usr/share/icons/breeze-dark/status/16/dialog-warning.svg

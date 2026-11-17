@@ -1,0 +1,32 @@
+/* Wallpaper picker: a grid of thumbnails with the file name underneath. */
+@import "~/.config/rofi/theme.rasi"
+
+window {
+    location: center;
+    anchor:   center;
+    y-offset: 0;
+    width:    1000px;
+}
+
+listview {
+    columns: 4;
+    lines:   3;
+    spacing: 8px;
+    flow:    horizontal;
+}
+
+element {
+    orientation: vertical;
+    padding:     8px;
+    spacing:     6px;
+}
+
+element-icon {
+    size: 210px;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    font:             "Adwaita Sans 9";
+}

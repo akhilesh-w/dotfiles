@@ -1,0 +1,19 @@
+/* Small action menus: quick actions, power, Wi-Fi, Bluetooth, clipboard. */
+@import "~/.config/rofi/theme.rasi"
+
+window {
+    width: 480px;
+}
+
+listview {
+    lines:        8;
+    fixed-height: false;
+}
+
+element {
+    padding: 9px 12px;
+}
+
+element-text {
+    font: "Adwaita Sans 11";
+}

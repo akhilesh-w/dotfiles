@@ -71,7 +71,6 @@ button {
 #cava,
 #scratchpad,
 #mode,
-#mpris,
 #idle_inhibitor,
 #cpu,
 #load,
@@ -79,6 +78,8 @@ button {
 #temperature,
 #wireplumber,
 #backlight,
+#network,
+#bluetooth,
 #clock,
 #battery,
 #tray {
@@ -143,9 +144,43 @@ label:focus {
     -gtk-icon-effect: highlight;
 }
 
+#mpris {
+    min-width: 200px;
+    margin-right: 200px;
+    padding: 0 16px;
+    border: 1px solid rgba(119, 26, 79, 0.65);
+    border-radius: 17px;
+    background-color: rgba(41, 31, 38, 0.92);
+    color: #d3cfcf;
+    transition: background-color 180ms ease-out, color 180ms ease-out;
+}
+
 #mpris.playing {
     background-color: #771a4f;
     color: #ffcfdf;
+    animation: media-presence 3s ease-in-out infinite;
+}
+
+#custom-help {
+    min-width: 22px;
+    padding: 0 7px;
+    border: 1px solid rgba(119, 26, 79, 0.5);
+    border-radius: 5px;
+    background-color: #291f26;
+    color: #ffcfdf;
+    font-weight: 700;
+    transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+
+#custom-help:hover {
+    background-color: #771a4f;
+    color: #ffcfdf;
+}
+
+@keyframes media-presence {
+    0% { border-color: rgba(255, 207, 223, 0.4); }
+    50% { border-color: rgba(255, 207, 223, 0.95); }
+    100% { border-color: rgba(255, 207, 223, 0.4); }
 }
 
 #tray menu {
@@ -154,4 +189,67 @@ label:focus {
 
 #scratchpad.empty {
     background: transparent;
+}
+
+/* Wi-Fi and Bluetooth: icon only, slightly larger glyphs, dim when off. */
+#network,
+#bluetooth {
+    font-size: 15px;
+    padding: 0 11px;
+}
+
+#network:hover,
+#bluetooth:hover,
+#group-stats:hover {
+    background-color: #3a2232;
+}
+
+#network.disconnected,
+#network.disabled,
+#bluetooth.off,
+#bluetooth.disabled {
+    color: #8f838b;
+}
+
+#bluetooth.connected {
+    color: #ffcfdf;
+}
+
+/* Stats drawer: one pill that grows to the left on hover. */
+#group-stats {
+    background-color: #291f26;
+    border-radius: 5px;
+}
+
+#group-stats #cpu,
+#group-stats .stats-child {
+    background-color: transparent;
+}
+
+#group-stats .stats-child {
+    color: #b5aab1;
+}
+
+#temperature.critical {
+    color: #ff7359;
+}
+
+/* Power mode: green in power saver, orange in performance. */
+#power-profiles-daemon {
+    padding: 0 11px;
+    font-size: 15px;
+    background-color: #291f26;
+    color: #d3cfcf;
+}
+
+#power-profiles-daemon:hover {
+    background-color: #3a2232;
+}
+
+#power-profiles-daemon.power-saver {
+    color: #9fd88a;
+}
+
+#power-profiles-daemon.performance {
+    color: #ff9e7a;
 }

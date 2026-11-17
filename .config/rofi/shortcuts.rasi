@@ -1,0 +1,22 @@
+/* Keyboard shortcut sheet: searchable, keys in a fixed-width column. */
+@import "~/.config/rofi/theme.rasi"
+
+window {
+    location: center;
+    anchor:   center;
+    y-offset: 0;
+    width:    760px;
+}
+
+listview {
+    lines:   16;
+    spacing: 0;
+}
+
+element {
+    padding: 5px 12px;
+}
+
+element-text {
+    font: "Adwaita Sans 10.5";
+}

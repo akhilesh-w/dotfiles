@@ -1,0 +1,8 @@
+[server]
+style = "/home/dopamine/.config/swayosd/style.css"
+# Height on screen, as a fraction from the top. 0.85 sits just above Waybar.
+top_margin = 0.82
+max_volume = 100
+min_brightness = 5
+show_percentage = true
+duration = 1200
