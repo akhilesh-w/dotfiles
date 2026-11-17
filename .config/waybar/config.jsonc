@@ -19,7 +19,8 @@
         "backlight",
         "network",
         "bluetooth",
-        "power-profiles-daemon",
+        "custom/power-mode",
+        "custom/charge-limit",
         "battery",
         "clock",
         "custom/help",
@@ -50,18 +51,22 @@
         "on-click": "/home/dopamine/.scripts/wifi-menu.sh",
         "on-click-right": "nm-connection-editor"
     },
-    // Click cycles power saver / balanced / performance. Right-click: pick from a menu.
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Power mode: {profile}\nClick to cycle   Right-click: menu",
-        "tooltip": true,
-        "format-icons": {
-            "default": "󰾅",
-            "performance": "󰓅",
-            "balanced": "󰾅",
-            "power-saver": "󰾆"
-        },
+    // Left-click cycles power saver / balanced / performance. Right-click: menu.
+    "custom/power-mode": {
+        "exec": "/home/dopamine/.scripts/power-mode.sh --waybar",
+        "return-type": "json",
+        "interval": 10,
+        "signal": 8,
+        "on-click": "/home/dopamine/.scripts/power-mode.sh --cycle",
         "on-click-right": "/home/dopamine/.scripts/power-mode.sh"
+    },
+    // Click toggles Lenovo conservation mode (stop charging around 60%).
+    "custom/charge-limit": {
+        "exec": "/home/dopamine/.scripts/charge-limit.sh --waybar",
+        "return-type": "json",
+        "interval": 30,
+        "signal": 9,
+        "on-click": "/home/dopamine/.scripts/charge-limit.sh"
     },
     "bluetooth": {
         "format": "󰂯",
