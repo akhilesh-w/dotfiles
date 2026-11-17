@@ -66,6 +66,17 @@ do
     end
 end
 
+-- ~/.scripts/bin first, so launcher, Steam and keybinds get the prime-run
+-- wrapper that also makes NVIDIA the only Vulkan device.
+do
+    local bin = os.getenv("HOME") .. "/.scripts/bin"
+    local path = os.getenv("PATH") or "/usr/local/bin:/usr/bin"
+    -- Only prepend once; a config reload would otherwise add it again.
+    if not (":" .. path .. ":"):find(":" .. bin .. ":", 1, true) then
+        hl.env("PATH", bin .. ":" .. path)
+    end
+end
+
 -- Qt apps (Dolphin etc.) use qt6ct: Fusion style, dark palette, Breeze Dark icons.
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 

@@ -160,3 +160,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH=/home/dopamine/.opencode/bin:$PATH
+
+# Personal wrappers (e.g. prime-run with the NVIDIA Vulkan fix) come first.
+export PATH="$HOME/.scripts/bin:$PATH"

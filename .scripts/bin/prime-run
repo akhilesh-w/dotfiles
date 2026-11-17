@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Run a program on the NVIDIA GTX 1650 (PRIME render offload).
+# Wraps /usr/bin/prime-run and also makes NVIDIA the only Vulkan device;
+# without this, Mesa's device-select layer lists the AMD iGPU first and
+# native Vulkan apps that pick "GPU 0" would silently stay on AMD.
+export MESA_VK_DEVICE_SELECT=10de:1f9d
+export MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1
+exec /usr/bin/prime-run "$@"
