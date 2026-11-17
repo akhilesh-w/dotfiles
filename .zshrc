@@ -104,6 +104,7 @@ alias psi='pacman -Si'
 alias i='sudo pacman -S'
 alias aheka='pacman -Qi'
 alias apps="echo && pacman -Slq | fzf --multi --preview-window=right,60%  --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias oc="opencode"
 
 # fzf alias 
 alias search="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim"
@@ -154,3 +155,8 @@ PERL5LIB="/home/dopamine/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5
 PERL_LOCAL_LIB_ROOT="/home/dopamine/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/dopamine/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/dopamine/perl5"; export PERL_MM_OPT;
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/dopamine/.opencode/bin:$PATH

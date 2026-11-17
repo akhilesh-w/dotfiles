@@ -1,0 +1,67 @@
+/* Same restrained command-palette treatment for Wofi dmenu actions. */
+* {
+    font-family: "Nimbus Sans", "Noto Sans CJK KR", sans-serif;
+    font-size: 14px;
+}
+
+window {
+    background-color: #1b181e;
+    border: 1px solid #473d47;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.42);
+}
+
+#outer-box {
+    margin: 10px;
+    background-color: transparent;
+}
+
+#input {
+    margin: 0 4px 7px;
+    padding: 12px 8px 13px;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    color: #f4edf2;
+    caret-color: #f3a6c8;
+    box-shadow: none;
+    font-size: 15px;
+}
+
+#inner-box {
+    padding-top: 7px;
+    border-top: 1px solid #39323b;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0;
+    background-color: transparent;
+}
+
+#entry {
+    min-height: 32px;
+    margin: 1px 0;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+#entry:hover {
+    background-color: #29232b;
+}
+
+#entry:selected {
+    border-color: #583a4d;
+    background-color: #392330;
+}
+
+#text {
+    color: #d8d1d7;
+}
+
+#text:selected {
+    color: #ffffff;
+    font-weight: 700;
+}

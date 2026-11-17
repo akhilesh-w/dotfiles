@@ -1,6 +1,4 @@
 
-live_config_reload = true
-
 [window]
 opacity = 0.8
 decorations = "None"
@@ -30,4 +28,8 @@ save_to_clipboard = true
 
 [cursor]
 unfocused_hollow = true 
+
+[general]
+
+live_config_reload = true
 

@@ -1,10 +1,11 @@
 # Wofi does not read the Rofi theme in ../rofi. This is the launcher config.
 show=drun
-prompt=Search
+prompt=Search applications
 term=kitty
-width=560
-height=420
-location=center
+width=640
+height=440
+location=top
+yoffset=140
 gtk_dark=true
 allow_images=true
 allow_markup=true
