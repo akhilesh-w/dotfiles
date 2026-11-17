@@ -10,13 +10,14 @@ choice="$(printf '%s\t%s\n' \
   '󰖔' 'Night light' \
   '󰾅' 'Power mode' \
   '󰢮' 'NVIDIA GPU on/off' \
+  '󰓓' 'Steam games: use NVIDIA' \
   '󰸉' 'Choose wallpaper' \
   '󰉏' 'Open wallpaper folder' \
   '󰌌' 'Keyboard shortcuts' \
   '󰌾' 'Lock screen' \
   '⏻' 'Power menu' \
   '󰑐' 'Reload Waybar' \
-  | "$HOME/.scripts/rofi-menu.sh" 'Quick actions' -theme-str 'listview { lines: 13; }')" || exit 0
+  | "$HOME/.scripts/rofi-menu.sh" 'Quick actions' -theme-str 'listview { lines: 14; }')" || exit 0
 
 case "$choice" in
   'Applications')          rofi -show drun ;;
@@ -26,6 +27,7 @@ case "$choice" in
   'Night light')           "$HOME/.scripts/night-light.sh" ;;
   'Power mode')            "$HOME/.scripts/power-mode.sh" ;;
   'NVIDIA GPU on/off')     "$HOME/.scripts/gpu-toggle.sh" ;;
+  'Steam games: use NVIDIA') "$HOME/.scripts/steam-nvidia.sh" ;;
   'Choose wallpaper')      "$HOME/.scripts/wallpaper-picker.sh" ;;
   'Open wallpaper folder') mkdir -p "$HOME/Pictures/Wallpapers" && xdg-open "$HOME/Pictures/Wallpapers" ;;
   'Keyboard shortcuts')    "$HOME/.scripts/shortcuts.sh" ;;

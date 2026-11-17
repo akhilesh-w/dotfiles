@@ -187,8 +187,12 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("~/.scripts/exit-hyprland.sh"
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
--- Same launcher, but the chosen app runs on the NVIDIA GPU.
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("pkill -x rofi || rofi -show drun -display-drun 'NVIDIA' -run-command 'prime-run {cmd}'"))
+-- Same launcher, but the chosen app runs on the NVIDIA GPU. Rofi itself runs
+-- under prime-run (which turns the GPU on), so whatever it launches inherits
+-- the NVIDIA settings. Rofi's -run-command does not apply to app entries.
+-- Steam games instead use the "prime-run %command%" launch option
+-- (~/.scripts/steam-nvidia.sh), because Steam starts them itself.
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("pkill -x rofi || prime-run rofi -show drun -display-drun 'NVIDIA'"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("~/.scripts/control-center.sh"))
 hl.bind(mainMod .. " + SHIFT + SLASH", hl.dsp.exec_cmd("~/.scripts/shortcuts.sh"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("~/.scripts/wallpaper-next.sh"))
