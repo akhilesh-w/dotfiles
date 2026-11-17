@@ -51,14 +51,13 @@
         "on-click": "/home/dopamine/.scripts/wifi-menu.sh",
         "on-click-right": "nm-connection-editor"
     },
-    // Left-click cycles power saver / balanced / performance. Right-click: menu.
+    // Click cycles power saver / balanced / performance.
     "custom/power-mode": {
         "exec": "/home/dopamine/.scripts/power-mode.sh --waybar",
         "return-type": "json",
         "interval": 10,
         "signal": 8,
-        "on-click": "/home/dopamine/.scripts/power-mode.sh --cycle",
-        "on-click-right": "/home/dopamine/.scripts/power-mode.sh"
+        "on-click": "/home/dopamine/.scripts/power-mode.sh --cycle"
     },
     // Click toggles Lenovo conservation mode (stop charging around 60%).
     "custom/charge-limit": {
@@ -175,7 +174,7 @@
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": ["󱃃", "󰔏", "󱃂"]
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -190,23 +189,23 @@
         },
         "format": "{icon} {capacity}%",
         "format-full": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
         "format-alt": "{icon} {time}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
     },
     "wireplumber": {
         "scroll-step": 5, // %, can be a float
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon} {volume}%",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
+        "format-bluetooth-muted": "󰝟 {icon}",
+        "format-muted": "󰝟",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
             "phone": "",
             "portable": "",
             "car": "",

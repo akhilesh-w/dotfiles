@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Power profiles (power-profiles-daemon).
-#   power-mode.sh            pick from a menu (right-click on the Waybar icon, quick actions)
-#   power-mode.sh --cycle    saver -> balanced -> performance -> saver (left-click)
+#   power-mode.sh            pick from a menu (quick actions)
+#   power-mode.sh --cycle    saver -> balanced -> performance -> saver (click on the Waybar icon)
 #   power-mode.sh --waybar   print the state as JSON for the Waybar icon
 set -uo pipefail
 
@@ -32,7 +32,7 @@ case "${1:-}" in
       performance) icon='󰓅' ;;
       *)           icon='󰾅' ;;
     esac
-    printf '{"text": "%s", "class": "%s", "tooltip": "Power mode: %s\\nClick to cycle   Right-click: menu"}\n' \
+    printf '{"text": "%s", "class": "%s", "tooltip": "Power mode: %s\\nClick to cycle"}\n' \
       "$icon" "$current" "$(pretty "$current")"
     exit 0 ;;
   --cycle)
