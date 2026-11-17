@@ -5,6 +5,7 @@ set -euo pipefail
 shortcuts='ESSENTIAL
 Super + Return        Open terminal
 Super + D             Open app launcher
+Super + Shift + D     Launch an app on the NVIDIA GPU
 Super + Space         Open quick actions
 Super + Shift + /     Show this shortcut guide
 Super + Ctrl + V      Clipboard history

@@ -19,6 +19,7 @@
         "backlight",
         "network",
         "bluetooth",
+        "custom/gpu",
         "custom/power-mode",
         "custom/charge-limit",
         "battery",
@@ -50,6 +51,12 @@
         "tooltip-format-disabled": "Wi-Fi is off\nClick to turn it on",
         "on-click": "/home/dopamine/.scripts/wifi-menu.sh",
         "on-click-right": "nm-connection-editor"
+    },
+    // Only visible while the NVIDIA GPU is awake (an app started with prime-run).
+    "custom/gpu": {
+        "exec": "/home/dopamine/.scripts/gpu-status.sh",
+        "return-type": "json",
+        "interval": 5
     },
     // Click cycles power saver / balanced / performance.
     "custom/power-mode": {

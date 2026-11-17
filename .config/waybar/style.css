@@ -264,3 +264,11 @@ label:focus {
 #custom-charge-limit.full {
     color: #8f838b;
 }
+
+/* NVIDIA GPU awake: green NVIDIA-style icon, hidden when the GPU sleeps. */
+#custom-gpu.active {
+    padding: 0 11px;
+    font-size: 15px;
+    background-color: #291f26;
+    color: #76b900;
+}

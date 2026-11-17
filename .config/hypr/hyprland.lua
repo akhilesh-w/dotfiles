@@ -52,6 +52,20 @@ end)
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("GTK_THEME", "Adwaita:dark")
+-- Draw the desktop with the AMD GPU only (it drives the laptop screen and HDMI).
+-- If Hyprland also opened the NVIDIA card it could never sleep. Apps still use
+-- the NVIDIA GPU on request with prime-run (Super+Shift+D, or Steam launch
+-- options "prime-run %command%"). /dev/dri/amd-igpu comes from
+-- /etc/udev/rules.d/82-amd-igpu.rules; skip the setting if it is missing so
+-- Hyprland can never fail to start because of it.
+do
+    local igpu = io.open("/dev/dri/amd-igpu", "r")
+    if igpu then
+        igpu:close()
+        hl.env("AQ_DRM_DEVICES", "/dev/dri/amd-igpu")
+    end
+end
+
 -- Qt apps (Dolphin etc.) use qt6ct: Fusion style, dark palette, Breeze Dark icons.
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
@@ -155,6 +169,8 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("~/.scripts/exit-hyprland.sh"
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+-- Same launcher, but the chosen app runs on the NVIDIA GPU.
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("pkill -x rofi || rofi -show drun -display-drun 'NVIDIA' -run-command 'prime-run {cmd}'"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("~/.scripts/control-center.sh"))
 hl.bind(mainMod .. " + SHIFT + SLASH", hl.dsp.exec_cmd("~/.scripts/shortcuts.sh"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("~/.scripts/wallpaper-next.sh"))
