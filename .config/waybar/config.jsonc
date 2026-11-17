@@ -52,11 +52,13 @@
         "on-click": "/home/dopamine/.scripts/wifi-menu.sh",
         "on-click-right": "nm-connection-editor"
     },
-    // Only visible while the NVIDIA GPU is awake (an app started with prime-run).
+    // NVIDIA GPU switch: dim = off (fully powered down), green = on. Click toggles.
     "custom/gpu": {
         "exec": "/home/dopamine/.scripts/gpu-status.sh",
         "return-type": "json",
-        "interval": 5
+        "interval": 5,
+        "signal": 10,
+        "on-click": "/home/dopamine/.scripts/gpu-toggle.sh"
     },
     // Click cycles power saver / balanced / performance.
     "custom/power-mode": {

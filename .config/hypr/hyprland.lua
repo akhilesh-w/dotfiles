@@ -66,6 +66,13 @@ do
     end
 end
 
+-- Keep ordinary apps off the NVIDIA GPU entirely. Without these, every GTK4,
+-- Electron or EGL program opens /dev/nvidia0 just by listing GPUs, which
+-- stops the driver from unloading (the Waybar GPU switch). The prime-run
+-- wrapper in ~/.scripts/bin clears both, so apps started with it see NVIDIA.
+hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "/usr/share/glvnd/egl_vendor.d/50_mesa.json")
+hl.env("VK_DRIVER_FILES", "/usr/share/vulkan/icd.d/radeon_icd.json")
+
 -- ~/.scripts/bin first, so launcher, Steam and keybinds get the prime-run
 -- wrapper that also makes NVIDIA the only Vulkan device.
 do

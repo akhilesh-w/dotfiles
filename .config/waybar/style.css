@@ -265,10 +265,19 @@ label:focus {
     color: #8f838b;
 }
 
-/* NVIDIA GPU awake: green NVIDIA-style icon, hidden when the GPU sleeps. */
-#custom-gpu.active {
+/* NVIDIA GPU switch: dim when off, NVIDIA green when on or busy. */
+#custom-gpu {
     padding: 0 11px;
     font-size: 15px;
     background-color: #291f26;
+    color: #6b6068;
+}
+
+#custom-gpu:hover {
+    background-color: #3a2232;
+}
+
+#custom-gpu.on,
+#custom-gpu.busy {
     color: #76b900;
 }

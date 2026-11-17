@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 # Run a program on the NVIDIA GTX 1650 (PRIME render offload).
-# Wraps /usr/bin/prime-run and also makes NVIDIA the only Vulkan device;
-# without this, Mesa's device-select layer lists the AMD iGPU first and
-# native Vulkan apps that pick "GPU 0" would silently stay on AMD.
+#
+# - Turns the NVIDIA GPU on first if it is off (Waybar GPU switch).
+# - Clears the desktop-wide "AMD only" EGL/Vulkan settings from hyprland.lua.
+# - Makes NVIDIA the only Vulkan device; otherwise Mesa's device-select layer
+#   lists the AMD iGPU first and apps that pick "GPU 0" stay on AMD.
+if [[ ! -d /sys/module/nvidia ]]; then
+  notify-send -a 'NVIDIA GPU' -i video-display 'Turning the NVIDIA GPU on' "Starting $(basename "${1:-app}") on the GTX 1650." 2>/dev/null
+  sudo -n /usr/local/bin/gpu-power on
+  pkill -RTMIN+10 waybar 2>/dev/null
+fi
+
+unset __EGL_VENDOR_LIBRARY_FILENAMES VK_DRIVER_FILES VK_ICD_FILENAMES
 export MESA_VK_DEVICE_SELECT=10de:1f9d
 export MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1
 exec /usr/bin/prime-run "$@"
